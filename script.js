@@ -17,7 +17,8 @@ let innerLeafHolder = weatherContainer1.group();
 let innerSnowHolder = weatherContainer1.group();
 let innerLightningHolder = weatherContainer1.group();
 let leafMask = outerSVG.rect();
-let leaf = Snap.select('#leaf');
+let leaf = Snap.select('#leaf'); z
+
 let sun = Snap.select('#sun');
 let sunburst = Snap.select('#sunburst');
 let outerSplashHolder = outerSVG.group();
