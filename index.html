@@ -7,15 +7,14 @@
 	<link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap" rel="stylesheet">
 	<meta charset="UTF-8">
   	<title>Weather Webapp By Pranshu</title>
-  	<link rel="stylesheet" href="../public/style.css">
+  	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<h1 >Weather Prediction</h1>
 <div id="container1" style="margin-bottom:30px; align-items: center;" >
 		<div id="location">
-			<input type="text" id="countryinput" placeholder="Country">
-			<input type="text" id="city" placeholder="City">
-			<input type="submit" id="checkb" value="Go">
+			<input type="text" id="cy" placeholder="City" >
+			<input type="submit" id="but" value="Go" >
 		</div>
 </div>	
 
@@ -35,13 +34,13 @@
 	c37.2,6.4,72.7,19.2,105.4,38L22-40.9z"/>
 	</svg>
 	<nav>
-		<!--<ul>
+		<ul style="display: none;" >
 			<li><a id="button-snow" class="active"><i class="wi wi-snow"></i></a></li>
 			<li><a id="button-wind"><i class="wi wi-strong-wind"></i></a></li>
 			<li><a id="button-rain"><i class="wi wi-rain"></i></a></li>
 			<li><a id="button-thunder"><i class="wi wi-lightning"></i></a></li>
 			<li><a id="button-sun"><i class="wi wi-day-sunny"></i></a></li>
-		</ul>-->
+		</ul>
 	</nav>
 	<!-- new code for background-->
 	<div class="container">
@@ -63,7 +62,7 @@
 			<div class="right">
 				<div id="date">Monday 28 January</div>
 				<div id="summary"></div>
-				<div id = "cityname"> Bhopal </div>
+				<div id = "cityname">city </div>
 			</div>
 			
 		</div>
@@ -74,7 +73,7 @@
 		<div class="info-side">
 		  <div class="today-info-container">
 			<div class="today-info">
-			  <div class="precipitation"> <span class="title">PRECIPITATION</span><span class="value">0 %</span>
+			  <div class="precipitation"> <span class="title">VISIBILITY</span><span class="value">0 %</span>
 				<div class="clear"></div>
 			  </div>
 			  <div class="humidity"> <span class="title">HUMIDITY</span><span class="value">34 %</span>
@@ -104,7 +103,7 @@
 	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js'></script>
-	<script  src="../index.js"></script>
-	<script src="../script.js"></script>
+	<script src="./main.js"></script>
+	<script src="./api.js"></script>
 	</body>
 </html>

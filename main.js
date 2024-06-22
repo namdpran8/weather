@@ -1,31 +1,30 @@
 // 📝 Fetch all DOM nodes in jQuery and Snap SVG
 
-let container = $('.container');
-let card = $('#card');
-let innerSVG = Snap('#inner');
-let outerSVG = Snap('#outer');
-let backSVG = Snap('#back');
-let summary = $('#summary');
-let date = $('#date');
-let weatherContainer1 = Snap.select('#layer1');
-let weatherContainer2 = Snap.select('#layer2');
-let weatherContainer3 = Snap.select('#layer3');
-let innerRainHolder1 = weatherContainer1.group();
-let innerRainHolder2 = weatherContainer2.group();
-let innerRainHolder3 = weatherContainer3.group();
-let innerLeafHolder = weatherContainer1.group();
-let innerSnowHolder = weatherContainer1.group();
-let innerLightningHolder = weatherContainer1.group();
-let leafMask = outerSVG.rect();
-let leaf = Snap.select('#leaf');
+var container = $('.container');
+var card = $('#card');
+var innerSVG = Snap('#inner');
+var outerSVG = Snap('#outer');
+var backSVG = Snap('#back');
+var summary = $('#summary');
+var date = $('#date');
+var weatherContainer1 = Snap.select('#layer1');
+var weatherContainer2 = Snap.select('#layer2');
+var weatherContainer3 = Snap.select('#layer3');
+var innerRainHolder1 = weatherContainer1.group();
+var innerRainHolder2 = weatherContainer2.group();
+var innerRainHolder3 = weatherContainer3.group();
+var innerLeafHolder = weatherContainer1.group();
+var innerSnowHolder = weatherContainer1.group();
+var innerLightningHolder = weatherContainer1.group();
+var leafMask = outerSVG.rect();
+var leaf = Snap.select('#leaf');
+var sun = Snap.select('#sun');
+var sunburst = Snap.select('#sunburst');
+var outerSplashHolder = outerSVG.group();
+var outerLeafHolder = outerSVG.group();
+var outerSnowHolder = outerSVG.group();
 
-let sun = Snap.select('#sun');
-let sunburst = Snap.select('#sunburst');
-let outerSplashHolder = outerSVG.group();
-let outerLeafHolder = outerSVG.group();
-let outerSnowHolder = outerSVG.group();
-
-let lightningTimeout;
+var lightningTimeout;
 
 // Set mask for leaf holder 
 
@@ -35,14 +34,14 @@ outerLeafHolder.attr({
 
 // create sizes object, we update this later
 
-let sizes = {
+var sizes = {
 	container: {width: 0, height: 0},
 	card: {width: 0, height: 0}
 }
 
 // grab cloud groups
 
-let clouds = [
+var clouds = [
 	{group: Snap.select('#cloud1')},
 	{group: Snap.select('#cloud2')},
 	{group: Snap.select('#cloud3')}
@@ -50,7 +49,7 @@ let clouds = [
 
 // set weather types ☁️ 🌬 🌧 ⛈ ☀️
 
-let weather = [
+var weather = [
 	{ type: 'snow', name: 'Snow'}, 
 	{ type: 'wind', name: 'Windy'}, 
 	{ type: 'rain', name: 'Rain'}, 
@@ -61,7 +60,7 @@ let weather = [
 // 🛠 app settings
 // in an object so the values can be animated in tweenmax
 
-let settings = {
+var settings = {
 	windSpeed: 2,
 	rainCount: 0,
 	leafCount: 0,
@@ -73,10 +72,10 @@ let settings = {
 	splashBounce: 80
 };
 
-let tickCount = 0;
-let rain = [];
-let leafs = [];
-let snow = [];
+var tickCount = 0;
+var rain = [];
+var leafs = [];
+var snow = [];
 
 // ⚙ initialize app
 
@@ -96,17 +95,17 @@ function init()
 	
 	// 🖱 bind weather menu buttons
 	
-	for(let i = 0; i < weather.length; i++)
+	for(var i = 0; i < weather.length; i++)
 	{
-		let w = weather[i];
-		let b = $('#button-' + w.type);
+		var w = weather[i];
+		var b = $('#button-' + w.type);
 		w.button = b;
 		b.bind('click', w, changeWeather);
 	}
 	
 	// ☁️ draw clouds
 	
-	for(let i = 0; i < clouds.length; i++)
+	for(var i = 0; i < clouds.length; i++)
 	{
 		clouds[i].offset = Math.random() * sizes.card.width;
 		drawCloud(clouds[i], i);
@@ -166,12 +165,12 @@ function drawCloud(cloud, i)
 	
 	*/
 	
-	let space  = settings.cloudSpace * i;
-	let height = space + settings.cloudHeight;
-	let arch = height + settings.cloudArch + (Math.random() * settings.cloudArch);
-	let width = sizes.card.width;
+	var space  = settings.cloudSpace * i;
+	var height = space + settings.cloudHeight;
+	var arch = height + settings.cloudArch + (Math.random() * settings.cloudArch);
+	var width = sizes.card.width;
 	
-	let points = [];
+	var points = [];
 	points.push('M' + [-(width), 0].join(','));
 	points.push([width, 0].join(','));
 	points.push('Q' + [width * 2, height / 2].join(','));
@@ -183,7 +182,7 @@ function drawCloud(cloud, i)
 	points.push('Q' + [- (width * 2), height/2].join(','));
 	points.push([-(width), 0].join(','));
 	
-	let path = points.join(' ');
+	var path = points.join(' ');
 	if(!cloud.path) cloud.path = cloud.group.path();
 	cloud.path.animate({
   		d: path
@@ -198,20 +197,20 @@ function makeRain()
 	// to dictate which svg group it'll be added to and 
 	// whether it'll generate a splash
 	
-	let lineWidth = Math.random() * 3;
+	var lineWidth = Math.random() * 3;
 	
 	// ⛈ line length is made longer for stormy weather
 	
-	let lineLength = currentWeather.type == 'thunder' ? 35 : 14;
+	var lineLength = currentWeather.type == 'thunder' ? 35 : 14;
 	
 	// Start the drop at a random point at the top but leaving 
 	// a 20px margin 
 	
-	let x = Math.random() * (sizes.card.width - 40) + 20;
+	var x = Math.random() * (sizes.card.width - 40) + 20;
 	
 	// Draw the line
 	
-	let line = this['innerRainHolder' + (3 - Math.floor(lineWidth))].path('M0,0 0,' + lineLength).attr({
+	var line = this['innerRainHolder' + (3 - Math.floor(lineWidth))].path('M0,0 0,' + lineLength).attr({
 		fill: 'none',
 		stroke: currentWeather.type == 'thunder' ? '#777' : '#0000ff',
 		strokeWidth: lineWidth
@@ -237,7 +236,7 @@ function onRainEnd(line, width, x, type)
 	
 	// We also remove it from the array
 	
-	for(let i in rain)
+	for(var i in rain)
 	{
 		if(!rain[i].paper) rain.splice(i, 1);
 	}
@@ -262,36 +261,36 @@ function makeSplash(x, type)
 	// 💦 The splash is a single line added to the outer svg.
 
 	// The splashLength is how long the animated line will be
-	let splashLength = type == 'thunder' ? 30 : 20;
+	var splashLength = type == 'thunder' ? 30 : 20;
 	
 	// splashBounce is the max height the line will curve up
 	// before falling
-	let splashBounce = type == 'thunder' ? 120 : 100;
+	var splashBounce = type == 'thunder' ? 120 : 100;
 	
 	// this sets how far down the line can fall
-	let splashDistance = 80;
+	var splashDistance = 80;
 	
 	// because the storm rain is longer we want the animation
 	// to last slighly longer so the overall speed is roughly
 	// the same for both
-	let speed = type == 'thunder' ? 0.7 : 0.5;
+	var speed = type == 'thunder' ? 0.7 : 0.5;
 	
 	// Set a random splash up amount based on the max splash bounce
-	let splashUp = 0 - (Math.random() * splashBounce);
+	var splashUp = 0 - (Math.random() * splashBounce);
 	
 	// Sets the end x position, and in turn defines the splash direction
-	let randomX = ((Math.random() * splashDistance) - (splashDistance / 2));
+	var randomX = ((Math.random() * splashDistance) - (splashDistance / 2));
 	
 	// Now we put the 3 line coordinates into an array. 
 	
-	let points = [];
+	var points = [];
 	points.push('M' + 0 + ',' + 0);
     points.push('Q' + randomX + ',' + splashUp);
     points.push((randomX * 2) + ',' + splashDistance);
 	
 	// Draw the line with Snap SVG
 	
-	let splash = outerSplashHolder.path(points.join(' ')).attr({
+	var splash = outerSplashHolder.path(points.join(' ')).attr({
       	fill: "none",
       	stroke: type == 'thunder' ? '#777' : '#0000ff',
       	strokeWidth: 1
@@ -299,9 +298,9 @@ function makeSplash(x, type)
 	
 	// We animate the dasharray to have the line travel along the path 
 	
-	let pathLength = Snap.path.getTotalLength(splash);
-	let xOffset = sizes.card.offset.left;//(sizes.container.width - sizes.card.width) / 2
-	let yOffset = sizes.card.offset.top + sizes.card.height; 
+	var pathLength = Snap.path.getTotalLength(splash);
+	var xOffset = sizes.card.offset.left;//(sizes.container.width - sizes.card.width) / 2
+	var yOffset = sizes.card.offset.top + sizes.card.height; 
     splash.node.style.strokeDasharray = splashLength + ' ' + pathLength;
 	
 	// Start the splash animation, calling onSplashComplete when finished
@@ -318,17 +317,17 @@ function onSplashComplete(splash)
 
 function makeLeaf()
 {
-	let scale = 0.5 + (Math.random() * 0.5);
-	let newLeaf;
+	var scale = 0.5 + (Math.random() * 0.5);
+	var newLeaf;
 	
-	let areaY = sizes.card.height/2;
-	let y = areaY + (Math.random() * areaY);
-	let endY = y - ((Math.random() * (areaY * 2)) - areaY)
-	let x;
-	let endX;
-	let colors = ['#76993E', '#4A5E23', '#6D632F'];
-	let color = colors[Math.floor(Math.random() * colors.length)];
-	let xBezier;
+	var areaY = sizes.card.height/2;
+	var y = areaY + (Math.random() * areaY);
+	var endY = y - ((Math.random() * (areaY * 2)) - areaY)
+	var x;
+	var endX;
+	var colors = ['#76993E', '#4A5E23', '#6D632F'];
+	var color = colors[Math.floor(Math.random() * colors.length)];
+	var xBezier;
 	
 	if(scale > 0.8)
 	{
@@ -358,7 +357,7 @@ function makeLeaf()
 	leafs.push(newLeaf);
 	 
 	
-	let bezier = [{x:x, y:y}, {x: xBezier, y:(Math.random() * endY) + (endY / 3)}, {x: endX, y:endY}]
+	var bezier = [{x:x, y:y}, {x: xBezier, y:(Math.random() * endY) + (endY / 3)}, {x: endX, y:endY}]
 	TweenMax.fromTo(newLeaf.node, 2, {rotation: Math.random()* 180, x: x, y: y, scale:scale}, {rotation: Math.random()* 360, bezier: bezier, onComplete: onLeafEnd, onCompleteParams: [newLeaf], ease: Power0.easeIn})
 }
 
@@ -367,7 +366,7 @@ function onLeafEnd(leaf)
 	leaf.remove();
 	leaf = null;
 	
-	for(let i in leafs)
+	for(var i in leafs)
 	{
 		if(!leafs[i].paper) leafs.splice(i, 1);
 	}
@@ -380,13 +379,13 @@ function onLeafEnd(leaf)
 
 function makeSnow()
 {
-	let scale = 0.5 + (Math.random() * 0.5);
-	let newSnow;
+	var scale = 0.5 + (Math.random() * 0.5);
+	var newSnow;
 	
-	let x = 20 + (Math.random() * (sizes.card.width - 40));
-	let endX; // = x - ((Math.random() * (areaX * 2)) - areaX)
-	let y = -10;
-	let endY;
+	var x = 20 + (Math.random() * (sizes.card.width - 40));
+	var endX; // = x - ((Math.random() * (areaX * 2)) - areaX)
+	var y = -10;
+	var endY;
 	
 	if(scale > 0.8)
 	{
@@ -426,7 +425,7 @@ function onSnowEnd(flake)
 	flake.remove();
 	flake = null;
 	
-	for(let i in snow)
+	for(var i in snow)
 	{
 		if(!snow[i].paper) snow.splice(i, 1);
 	}
@@ -440,7 +439,7 @@ function onSnowEnd(flake)
 function tick()
 {
 	tickCount++;
-	let check = tickCount % settings.renewCheck;
+	var check = tickCount % settings.renewCheck;
 	
 	if(check)
 	{
@@ -449,7 +448,7 @@ function tick()
 		if(snow.length < settings.snowCount) makeSnow();
 	}
 	
-	for(let i = 0; i < clouds.length; i++)
+	for(var i = 0; i < clouds.length; i++)
 	{		
 		if(currentWeather.type == 'sun')
 		{
@@ -470,7 +469,7 @@ function tick()
 
 function reset()
 {
-	for(let i = 0; i < weather.length; i++)
+	for(var i = 0; i < weather.length; i++)
 	{
 		container.removeClass(weather[i].type);
 		weather[i].button.removeClass('active');
@@ -497,18 +496,18 @@ function lightning()
 	startLightningTimer();
 	TweenMax.fromTo(card, 0.75, {y: -30}, {y:0, ease:Elastic.easeOut});
 	
-	let pathX = 30 + Math.random() * (sizes.card.width - 60);
-	let yOffset = 20;
-	let steps = 20;
-	let points = [pathX + ',0'];
-	for(let i = 0; i < steps; i++)
+	var pathX = 30 + Math.random() * (sizes.card.width - 60);
+	var yOffset = 20;
+	var steps = 20;
+	var points = [pathX + ',0'];
+	for(var i = 0; i < steps; i++)
 	{
-		let x = pathX + (Math.random() * yOffset - (yOffset / 2));
-		let y = (sizes.card.height / steps) * (i + 1)
+		var x = pathX + (Math.random() * yOffset - (yOffset / 2));
+		var y = (sizes.card.height / steps) * (i + 1)
 		points.push(x + ',' + y);
 	}
 	
-	let strike = weatherContainer1.path('M' + points.join(' '))
+	var strike = weatherContainer1.path('M' + points.join(' '))
 	.attr({
 		fill: 'none',
 		stroke: 'white',
