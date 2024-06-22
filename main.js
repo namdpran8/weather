@@ -50,7 +50,7 @@ var clouds = [
 // set weather types ☁️ 🌬 🌧 ⛈ ☀️
 
 var weather = [
-	{ type: 'snow', name: 'Snow'}, 
+	{ type: 'snow', name: 'Winter'}, 
 	{ type: 'wind', name: 'Windy'}, 
 	{ type: 'rain', name: 'Rain'}, 
 	{ type: 'thunder', name: 'Storms'},

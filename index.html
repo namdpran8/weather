@@ -3,6 +3,9 @@
 <head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap" rel="stylesheet">
 	<meta charset="UTF-8">
@@ -10,7 +13,8 @@
   	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<h1 >Weather Prediction</h1>
+	<h1 id="hea" style="text-align: center;" >Current Weather </h1>
+	<h6 id="nme">Created by Pranshu</h6>
 <div id="container1" style="margin-bottom:30px; align-items: center;" >
 		<div id="location">
 			<input type="text" id="cy" placeholder="City" >
@@ -88,8 +92,8 @@
 			<ul class="week-list">
 			  <li class="active"><i class="day-icon" data-feather="sun"></i><span class="day-name">Tue</span><span class="day-temp">29°C</span></li>
 			  <li><i class="day-icon" data-feather="cloud"></i><span class="day-name">Wed</span><span class="day-temp">21°C</span></li>
-			  <li><i class="day-icon" data-feather="cloud-snow"></i><span class="day-name">Thu</span><span class="day-temp">08°C</span></li>
-			  <li><i class="day-icon" data-feather="cloud-rain"></i><span class="day-name">Fry</span><span class="day-temp">19°C</span></li>
+			  <li><i class="day-icon" data-feather="cloud-snow"></i><span class="day-name">Thu</span><span class="day-temp">25°C</span></li>
+			  <li><i class="day-icon" data-feather="cloud-rain"></i><span class="day-name">Fry</span><span class="day-temp">27°C</span></li>
 			  <div class="clear"></div>
 			</ul>
 		  </div>
@@ -100,7 +104,6 @@
 	  </div>
 	  </div>
 </div>
-	<footer><h3>Created By Pranshu</h3></footer>
 	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js'></script>
