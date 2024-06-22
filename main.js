@@ -155,16 +155,9 @@ function onResize()
 
 function drawCloud(cloud, i)
 {
-	/* 
-	
-	☁️ We want to create a shape thats loopable but that can also
-	be animated in and out. So we use Snap SVG to draw a shape
-	with 4 sections. The 2 ends and 2 arches the same width as
+	/*☁️ We want to create a shape thats loopable but that can also	be animated in and out. So we use Snap SVG to draw a shape with 4 sections. The 2 ends and 2 arches the same width as
 	the card. So the final shape is about 4 x the width of the
-	card.
-	
-	*/
-	
+	card.*/	
 	var space  = settings.cloudSpace * i;
 	var height = space + settings.cloudHeight;
 	var arch = height + settings.cloudArch + (Math.random() * settings.cloudArch);
@@ -191,22 +184,13 @@ function drawCloud(cloud, i)
 
 function makeRain()
 {
-	// 💧 This is where we draw one drop of rain
+	// 💧 This is where we draw one drop of rain. first we set the line width of the line, we use this to dictate which svg group it'll be added to and whether it'll generate a splash
 	
-	// first we set the line width of the line, we use this
-	// to dictate which svg group it'll be added to and 
-	// whether it'll generate a splash
+	var lineWidth = Math.random() * 3; 	// ⛈ line length is made longer for stormy weather
 	
-	var lineWidth = Math.random() * 3;
+	var lineLength = currentWeather.type == 'thunder' ? 35 : 14; 	// Start the drop at a random point at the top but leaving 	// a 20px margin 
 	
-	// ⛈ line length is made longer for stormy weather
-	
-	var lineLength = currentWeather.type == 'thunder' ? 35 : 14;
-	
-	// Start the drop at a random point at the top but leaving 
-	// a 20px margin 
-	
-	var x = Math.random() * (sizes.card.width - 40) + 20;
+	var x = Math.random() * (sizes.card.width - 40) + 20; 
 	
 	// Draw the line
 	
@@ -590,7 +574,7 @@ function changeWeather(weather)
 	{
 		case 'sun':
 			TweenMax.to(sun.node, 4, {x: sizes.card.width / 2, y: sizes.card.height / 2, ease: Power2.easeInOut});
-			TweenMax.to(sunburst.node, 4, {scale: 1, opacity: 0.8, y: (sizes.card.height/2) + (sizes.card.offset.top), ease: Power2.easeInOut});
+			TweenMax.to(sunburst.node, 4, {scale: 1, opacity: 0.8, y: (sizes.card.height/2) , x: (sizes.card.width / 2) , ease: Power2.easeInOut});
 			break;
 		default:
 			TweenMax.to(sun.node, 2, {x: sizes.card.width / 2, y: -100, leafCount: 0, ease: Power2.easeInOut});

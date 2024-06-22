@@ -229,6 +229,7 @@ nav li a.active {
 }
 
 #container1 input[type="submit"] {
+  margin-top: 20px;
   cursor: pointer;
   width: 150px;
   border-radius: 25px;
@@ -351,6 +352,11 @@ nav li a.active {
 	border-radius: 10px;
 }
 
+footer{
+  text-align: center;
+
+}
+
 .week-list>li:hover {
 	-webkit-transform: scale(1.1);
 	    -ms-transform: scale(1.1);
@@ -432,7 +438,7 @@ div{
   
 }
 
-h1{
+h1 h3{
   text-align: center;
   font-family: "Castoro Titling", serif;
   font-weight: 400;

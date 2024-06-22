@@ -1,4 +1,4 @@
-alert("api js connected");
+
 
 // API call
 var button1 = document.querySelector("#but");
