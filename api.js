@@ -37,7 +37,8 @@ button1.addEventListener("click", () => {
             case 'wind':    // Trigger wind animation
                 $('#button-wind').click();
                 break;
-            case 'rain':                // Trigger rain animation
+            case 'rain':
+            case 'clouds':                // Trigger rain animation
                 $('#button-rain').click();
                 break;
             case 'thunderstorm':                // Trigger thunder animation
