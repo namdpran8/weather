@@ -12,4 +12,23 @@ An animated weather card application that shows current weather conditions, incl
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository  
+2 .Open index.html in your browser.
+
+## Usage
+- Open the application in a browser.The app will attempt to detect your location and fetch current weather data. If location detection fails, enter your city name in the input field provided.Use the navigation icons to view different weather animations.
+## Configuration
+1. Sign up for a free API key at OpenWeather.
+2. Replace YOUR_API_KEY in script.js with your OpenWeather API key.
+## Technologies Used
+HTML, CSS, JavaScript , jQuery ,Snap.svg ,GSAP,OpenWeather API
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contributing
+Contributions are welcome! Please submit a pull request or open an issue to discuss any changes.
+
+
+
+Author
+Created by Pranshu.
